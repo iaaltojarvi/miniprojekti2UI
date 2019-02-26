@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Navbar, Nav, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import './AppNavigation.css';
 
 export default class AppNavigation extends Component {
   render() {
@@ -9,12 +10,13 @@ export default class AppNavigation extends Component {
         <Navbar bg="light" expand="lg">
           <Navbar.Brand>HipsteriDevskulit</Navbar.Brand>
             <Nav className="mr-auto">
-              <Link to="/">Koti</Link>
+              <Link to="/"></Link>
             </Nav>
-            <Button variant="primary">Login</Button>
-            <Button variant="primary">Sign Up</Button>
-            <Button variant="secondary">Profile</Button>
-        </Navbar>;
+            <Link to="/"><Button variant="primary" to="/">Home</Button></Link>
+            <Link to="/login"><Button variant="primary" to="/login">Login</Button></Link>
+            <Link to="/signup"><Button variant="primary" to="/signup">Sign Up</Button></Link>
+            <Link to="/profile"><Button variant="secondary">Profile</Button></Link>
+        </Navbar>
       </div>
     )
   }
