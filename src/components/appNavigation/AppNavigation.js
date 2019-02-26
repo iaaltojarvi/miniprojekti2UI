@@ -9,7 +9,7 @@ export default class AppNavigation extends Component {
         <Navbar bg="light" expand="lg">
           <Navbar.Brand>HipsteriDevskulit</Navbar.Brand>
             <Nav className="mr-auto">
-              <Nav.Link to="/">Koti</Nav.Link>
+              <Link to="/">Koti</Link>
             </Nav>
             <Button variant="primary">Login</Button>
             <Button variant="primary">Sign Up</Button>
