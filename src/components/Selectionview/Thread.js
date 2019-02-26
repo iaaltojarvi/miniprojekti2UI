@@ -10,7 +10,7 @@ export default class Thread extends Component {
 
   render() {
     return (
-      <Card style={{ width: '18rem' }}>
+      <Card className="thread-card">
         <Card.Img variant="top" src="/img/icons8-postgresql-96.png" className="topic-icon"/>
         <Card.Body>
           {/* <Card.Title>Card Title</Card.Title> */}

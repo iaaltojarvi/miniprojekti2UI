@@ -1,7 +1,4 @@
-.list-group-item {
-    background-color: rgb(180, 172, 172);
-}
-
-.topic-container {
-    background-color: rgb(221, 209, 209);
+.list-group-item:hover {
+    color: black;
+    background-color:rgb(240, 233, 233);
 }

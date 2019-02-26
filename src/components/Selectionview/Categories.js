@@ -12,11 +12,11 @@ export default class Categories extends Component {
         <Row>
           <Col>
             <ListGroup>
-              <ListGroup.Item onClick={() => alert('All')}>All categories</ListGroup.Item>
-              <ListGroup.Item onClick={() => alert('Javascript')}>Javascript</ListGroup.Item>
-              <ListGroup.Item onClick={() => alert('Node')}>NodeJS</ListGroup.Item>
-              <ListGroup.Item onClick={() => alert('ReactJS')}>ReactJS</ListGroup.Item>
-              <ListGroup.Item onClick={() => alert('Database')}>Databases</ListGroup.Item>
+              <ListGroup.Item variant="light" onClick={() => alert('All')}>All categories</ListGroup.Item>
+              <ListGroup.Item variant="light" onClick={() => alert('Javascript')}>Javascript</ListGroup.Item>
+              <ListGroup.Item variant="light" onClick={() => alert('Node')}>NodeJS</ListGroup.Item>
+              <ListGroup.Item variant="light" onClick={() => alert('ReactJS')}>ReactJS</ListGroup.Item>
+              <ListGroup.Item variant="light" onClick={() => alert('Database')}>Databases</ListGroup.Item>
             </ListGroup>
           </Col>
         </Row>
