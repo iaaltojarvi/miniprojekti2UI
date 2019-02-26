@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-export default class AppNavigation extends Component {
+export default class Thread extends Component {
   render() {
     return (
       <div>

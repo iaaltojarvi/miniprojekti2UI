@@ -9,9 +9,9 @@ class App extends Component {
     return (
       <Router>
         <div>
-          <AppNavigation/>
+          <AppNavigation />
           <Switch>
-            <Route exact path='/' component = {SelectionView} />
+            <Route exact path='/' component={SelectionView} />
           </Switch>
         </div>
       </Router>
