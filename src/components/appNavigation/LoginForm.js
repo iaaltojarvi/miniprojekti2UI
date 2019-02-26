@@ -18,14 +18,15 @@ class LoginForm extends Component {
 
     render() {
         return(
+            
             <form>
                 <input type="text" placeholder="Email" 
-               value={this.state.email} onChange={this.handleEmailChange}/>
+               value={this.state.email} onChange={this.handleEmailChange}/><br />
                 <input type="text" placeholder="Password" 
-               value={this.state.password} onChange={this.handlePasswordChange}/>
+               value={this.state.password} onChange={this.handlePasswordChange}/><br />
                 <input type="submit" value="Login" onClick={this.handleCreateClick}/>
             </form>
-
+            
         );
         }
     }
