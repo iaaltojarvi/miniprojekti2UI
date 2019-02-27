@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
+import { withRouter } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { createThread } from '../../API/mock_calls';
 
 
-export default class AddThreadForm extends Component {
+class AddThreadForm extends Component {
     constructor(props) {
         super(props);
         this.handleClick = this.handleClick.bind(this);
@@ -16,13 +17,15 @@ export default class AddThreadForm extends Component {
         this.setState({ [event.target.name]: event.target.value });
     }
 
-    handleClick(event) {
+    async handleClick(event) {
         event.preventDefault();
         if (!this.state.topic) {
             alert('Must have topic for discussion!');
         } else {
-            createThread(this.state.category, this.state.topic);
-            this.props.onFinish();
+            let res = await createThread(this.state.category, this.state.topic);
+            if(res) this.props.history.push('/discussion/2');
+            // TODO: adds to database, waits for async method to return success and then history push-a-loo!
+            
         }
     }
 
@@ -65,3 +68,5 @@ export default class AddThreadForm extends Component {
         )
     }
 }
+
+export default withRouter(AddThreadForm);

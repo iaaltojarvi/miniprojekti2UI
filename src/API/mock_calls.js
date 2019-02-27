@@ -23,4 +23,5 @@ export const getThreads = topic => {
 export const createThread = (category, topic) => {
     const newDiscussionObject = { "id": jsonarray.length + 1, "topic": topic, "category": category };
     jsonarray.push(newDiscussionObject);
+    return true;
 }
