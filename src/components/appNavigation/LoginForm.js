@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-//import { createquote } from "../serviceclient";
+import { createuser } from '../../serviceClient';
+
 
 class LoginForm extends Component {
-    state = {email: "", password: ''};
-    handleEmailChange = (e) => {
+    state = {username: "", password: ''};
+    handleNameChange = (e) => {
         const uusiarvo = e.target.value;
-        this.setState({email: uusiarvo});
+        this.setState({username: uusiarvo});
     }
     handlePasswordChange = (e) => {
         const uusiarvo = e.target.value;
@@ -13,6 +14,10 @@ class LoginForm extends Component {
     }
     handleCreateClick = (e) => {
         e.preventDefault();
+        createuser(this.state, ()=> {
+            this.props.history.push("/");           
+        })
+        this.setState({username: "", password: ''});
     }
 
 
@@ -20,8 +25,8 @@ class LoginForm extends Component {
         return(
             
             <form>
-                <input type="text" placeholder="Email" 
-               value={this.state.email} onChange={this.handleEmailChange}/><br />
+                <input type="text" placeholder="Name" 
+               value={this.state.username} onChange={this.handleNameChange}/><br />
                 <input type="text" placeholder="Password" 
                value={this.state.password} onChange={this.handlePasswordChange}/><br />
                 <input type="submit" value="Login" onClick={this.handleCreateClick}/>
