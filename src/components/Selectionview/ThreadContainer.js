@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Container from 'react-bootstrap/Container';
 import Thread from './Thread';
 import { getThreads } from '../../API/mock_calls';
@@ -31,29 +31,25 @@ const mapCategoryToImg = (category) => {
   return 'img/' + imgName;
 }
 
-export default class ThreadContainer extends Component {
-  constructor(props) {
-    super(props);
-  }
-  render() {
-    const threadList = getThreads(this.props.category);
-    const newList = threadList.map(thread => {
-      return (
-        <Col lg={4} key={thread.id}>
-          <Thread
-            author='Groot!'
-            text={thread.topic}
-            imageName={mapCategoryToImg(thread.category)}>
-          </Thread>
-        </Col>);
-    });
+const ThreadContainer = (props) => {
+  const threadList = getThreads(props.category);
+  const newList = threadList.map(thread => {
     return (
-      <Container>
-        <Row>
-          {newList}
-        </Row>
-      </Container>
-    );
-  }
+      <Col lg={4} key={thread.id}>
+        <Thread
+          author='Groot!'
+          text={thread.topic || 'no content'}
+          imageName={mapCategoryToImg(thread.category)}>
+        </Thread>
+      </Col>);
+  });
+  return (
+    <Container>
+      <Row>
+        {newList}
+      </Row>
+    </Container>
+  );
 }
 
+export default ThreadContainer;
