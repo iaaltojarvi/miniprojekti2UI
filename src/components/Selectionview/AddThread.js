@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
+// import CookieLog from '../appNavigation/CookieLog';
 
 export default class AddThread extends Component {
     constructor(props) {
