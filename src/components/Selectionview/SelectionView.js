@@ -7,17 +7,18 @@ import Col from 'react-bootstrap/Col';
 import './SelectionView.css';
 import AddThread from './AddThread';
 
-const availableTopics = [{ "id": "1", "topic": 'All categories' }, { "id": "2", "topic": 'JavaScript' }, { "id": "3", "topic": 'ReactJS' }, { "id": "4", "topic": 'NodeJS' }, { "id": "5", "topic": 'PostgreSQL' }];
+// TODO: getter method for available categories from database
+const availableCategories = [{ "id": "1", "category": 'All categories' }, { "id": "2", "category": 'JavaScript' }, { "id": "3", "category": 'ReactJS' }, { "id": "4", "category": 'NodeJS' }, { "id": "5", "category": 'PostgreSQL' }];
 
 export default class SelectionView extends Component {
   constructor(props) {
     super(props);
-    this.state = { topic: '' };
+    this.state = { category: '' };
     this.handleUpdate = this.handleUpdate.bind(this);
   }
 
-  handleUpdate(newTopic) {
-    this.setState({ topic: newTopic });
+  handleUpdate(newCategory) {
+    this.setState({ category: newCategory });
   }
 
   render() {
@@ -25,15 +26,15 @@ export default class SelectionView extends Component {
       <Container>
         <Row className="justify-content-md-center">
           <Col md="auto">
-            <AddThread />
+            <AddThread listContent={availableCategories} />
           </Col>
         </Row>
         <Row>
           <Col lg={3}>
-            <Categories onClick={this.handleUpdate} listContent={availableTopics} />
+            <Categories onClick={this.handleUpdate} listContent={availableCategories} />
           </Col>
           <Col lg={9}>
-            <ThreadContainer topics={this.state.topic}/>
+            <ThreadContainer category={this.state.category}/>
           </Col>
         </Row>
       </Container>

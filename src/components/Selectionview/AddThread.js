@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import Form from 'react-bootstrap/Form';
-// import CookieLog from '../appNavigation/CookieLog';
+import AddThreadForm from './AddThreadForm';
 
 export default class AddThread extends Component {
     constructor(props) {
@@ -22,7 +21,6 @@ export default class AddThread extends Component {
         this.setState({ show: true });
     }
 
-
     render() {
         return (
             <div>
@@ -32,22 +30,7 @@ export default class AddThread extends Component {
                         <Modal.Title>Add New Thread</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <Form>
-                            <Form.Group controlId="exampleForm.ControlInput1">
-                                <Form.Label>Write header</Form.Label>
-                                <Form.Control type="text" placeholder="Topic" />
-                            </Form.Group>
-                            <Form.Group controlId="exampleForm.ControlSelect1">
-                                <Form.Label>Select category</Form.Label>
-                                <Form.Control as="select">
-                                    <option>JavaScript</option>
-                                    <option>NodeJS</option>
-                                    <option>ReactJS</option>
-                                    <option>Databases</option>
-                                </Form.Control>
-                            </Form.Group>
-                            <Button variant="primary" onClick={this.handleClose} type="submit">Start new thread</Button>
-                        </Form>
+                        <AddThreadForm listContent={this.props.listContent} onFinish={this.handleClose}/>
                     </Modal.Body>
                 </Modal>
             </div>

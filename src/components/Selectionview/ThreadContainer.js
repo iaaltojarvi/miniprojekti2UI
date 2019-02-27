@@ -36,7 +36,7 @@ export default class ThreadContainer extends Component {
     super(props);
   }
   render() {
-    const threadList = getThreads(this.props.topics);
+    const threadList = getThreads(this.props.category);
     const newList = threadList.map(thread => {
       return (
         <Col lg={4} key={thread.id}>

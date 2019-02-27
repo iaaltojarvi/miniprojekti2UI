@@ -10,10 +10,17 @@ let jsonarray = [
     { "id": "9", "topic": "Experimental features of Node 10.*", "category": "nodejs" }
 ]
 
+
+
 export const getThreads = topic => {
     if (!topic) {
         return jsonarray;
     } else {
         return jsonarray.filter(entry => entry.category === topic);
     }
+}
+
+export const createThread = (category, topic) => {
+    const newDiscussionObject = { "id": jsonarray.length + 1, "topic": topic, "category": category };
+    jsonarray.push(newDiscussionObject);
 }

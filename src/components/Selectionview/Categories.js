@@ -11,18 +11,18 @@ export default class Categories extends Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
-  handleClick(topic) {
-    let lCaseTopic = topic.toLowerCase();
-    if(lCaseTopic === 'all categories') {
-      lCaseTopic = '';
+  handleClick(category) {
+    let lCaseCategory = category.toLowerCase();
+    if(lCaseCategory === 'all categories') {
+      lCaseCategory = '';
     }
-    this.props.onClick(lCaseTopic);
+    this.props.onClick(lCaseCategory);
   }
   render() {
 
     let listItems = this.props.listContent.map(item => {
       return (
-        <ListGroup.Item variant="light" key={item.id} onClick={() => this.handleClick(item.topic)}>{item.topic}</ListGroup.Item>
+        <ListGroup.Item variant="light" key={item.id} onClick={() => this.handleClick(item.category)}>{item.category}</ListGroup.Item>
       )
     })
 
