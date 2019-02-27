@@ -6,7 +6,6 @@ import Form from 'react-bootstrap/Form';
 export default class AddThread extends Component {
     constructor(props) {
         super(props);
-
         this.handleShow = this.handleShow.bind(this);
         this.handleClose = this.handleClose.bind(this);
         this.state = {
@@ -46,12 +45,9 @@ export default class AddThread extends Component {
                                     <option>Databases</option>
                                 </Form.Control>
                             </Form.Group>
+                            <Button variant="primary" onClick={this.handleClose} type="submit">Start new thread</Button>
                         </Form>
                     </Modal.Body>
-                    <Modal.Footer>
-                        <Button variant="secondary" onClick={this.handleClose}>Close</Button>
-                        <Button variant="primary" onClick={this.handleClose}>Start new thread</Button>
-                    </Modal.Footer>
                 </Modal>
             </div>
         )

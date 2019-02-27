@@ -6,8 +6,29 @@ import { getThreads } from '../../API/mock_calls';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-const createId = () => {
-  return (Math.random() * Date.now()).toFixed(0);
+const mapCategoryToImg = (category) => {
+  let imgName = '';
+  switch (category) {
+    case 'javascript':
+      imgName = 'javascript_icon.png';
+      break;
+    case 'database':
+      imgName = 'database_icon.png';
+      break;
+    case 'mongodb':
+      imgName = 'mongodb_icon.png';
+      break;
+    case 'nodejs':
+      imgName = 'nodejs_icon.png';
+      break;
+    case 'postgresql':
+      imgName = 'postgres_icon.png';
+      break;
+    case 'reactjs':
+      imgName = 'reactjs_icon.png';
+      break;
+  }
+  return 'img/' + imgName;
 }
 
 export default class ThreadContainer extends Component {
@@ -17,7 +38,14 @@ export default class ThreadContainer extends Component {
   render() {
     const threadList = getThreads(this.props.topics);
     const newList = threadList.map(thread => {
-      return (<Col lg={4} key={thread.id}><Thread author='Groot!' text={thread.topic}></Thread></Col>);
+      return (
+        <Col lg={4} key={thread.id}>
+          <Thread
+            author='Groot!'
+            text={thread.topic}
+            imageName={mapCategoryToImg(thread.category)}>
+          </Thread>
+        </Col>);
     });
     return (
       <Container>
@@ -28,3 +56,4 @@ export default class ThreadContainer extends Component {
     );
   }
 }
+
