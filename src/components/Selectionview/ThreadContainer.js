@@ -25,6 +25,9 @@ const mapCategoryToImg = (category) => {
     case 'reactjs':
       imgName = 'reactjs_icon.png';
       break;
+    default:
+      imgName = 'reactjs_icon.png';
+      break;
   }
   return 'img/' + imgName;
 }
@@ -32,9 +35,10 @@ const mapCategoryToImg = (category) => {
 const ThreadContainer = (props) => {
   const newList = props.threadList.map(thread => {
     return (
-      <Col lg={4} key={thread.id}>
+      <Col lg={6} key={thread.id}>
         <Thread
           text={thread.topic || 'no content'}
+          thread_id={thread.id}
           imageName={mapCategoryToImg(thread.category)}>
         </Thread>
       </Col>);

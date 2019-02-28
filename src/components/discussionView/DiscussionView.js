@@ -53,11 +53,9 @@ export default class DiscussionView extends Component {
         headers: myHeaders,
         body: JSON.stringify(bodyData)
       })
-      console.log(res);
       let jsonRes = await res.json();
       if (jsonRes.success) {
-        // TODO: get all messages again!
-        this.updateMessages();        
+        this.updateMessages();
       }
     } catch (error) {
       alert(error.message);
@@ -70,9 +68,13 @@ export default class DiscussionView extends Component {
 
   render() {
     let dataArray = this.state.data.map(item => {
+      let dateSplit = item.created.split('T')[0];
       return (
         <Card className="discussion-card" key={item.id}>
           <Card.Body>
+            <Card.Text>
+              <strong>{item.username}</strong> @{dateSplit}
+            </Card.Text>
             <Card.Text>
               {item.content}
             </Card.Text>
@@ -82,6 +84,7 @@ export default class DiscussionView extends Component {
     })
     return (
       <div>
+        <p></p>
         <Container className="discussion-card-container">
           {dataArray}
           <Form>

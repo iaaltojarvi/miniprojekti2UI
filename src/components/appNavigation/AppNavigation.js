@@ -4,9 +4,6 @@ import { Link } from 'react-router-dom';
 import './AppNavigation.css';
 
 export default class AppNavigation extends Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
     return (
       <div>
@@ -18,8 +15,8 @@ export default class AppNavigation extends Component {
           <Link to="/"><Button variant="primary" to="/">Home</Button></Link>
           {this.props.userAuth ?
             <Link to="/"><Button variant="primary" onClick={this.props.onLogout}>Logout</Button></Link> :
-            <Link to="/login"><Button variant="primary" to="/login">Login</Button></Link>}
-          <Link to="/signup"><Button variant="primary" to="/signup">Sign Up</Button></Link>
+            <Link to="/login"><Button variant="primary">Login</Button></Link>}
+          <Link to="/signup"><Button variant="primary">Sign Up</Button></Link>
           <Link to="/profile"><Button variant="secondary">Profile</Button></Link>
         </Navbar>
       </div>

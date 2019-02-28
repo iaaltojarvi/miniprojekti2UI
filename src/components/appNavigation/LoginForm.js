@@ -9,10 +9,6 @@ class LoginForm extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    componentDidMount() {
-        console.log(this.props)
-    }
-
     handleNameChange = (e) => {
         const uusiarvo = e.target.value;
         this.setState({ username: uusiarvo });
@@ -25,6 +21,7 @@ class LoginForm extends Component {
         e.preventDefault();
         if (!this.state.username || !this.state.password) {
             alert('Please fill both username and password');
+            return;
         }
         try {
             let response = await fetch('/api/users/login', {
@@ -37,13 +34,14 @@ class LoginForm extends Component {
                 body: JSON.stringify(this.state)
             });
             let jsonRes = await response.json();
+            if (!jsonRes.success) throw new Error("Unauthorized user!");
             if (jsonRes.success && jsonRes.token && jsonRes.id) {
                 this.setState({ username: '', password: '' });
                 this.props.onLogin(jsonRes);
                 this.props.history.push('/');
             }
         } catch (error) {
-            console.log('Login failed!' + error);
+            alert('Login failed! ' + error);
             this.setState({ username: '', password: '' });
         }
     }
