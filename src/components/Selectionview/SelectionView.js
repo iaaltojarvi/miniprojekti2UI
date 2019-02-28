@@ -21,6 +21,12 @@ export default class SelectionView extends Component {
     this.setState({ category: newCategory });
   }
 
+  async componentDidMount() {
+    let res = await fetch('/api/categories');
+    let jsonRes = await res.json();
+    console.log(jsonRes);
+  }
+
   render() {
     return (
       <Container>
@@ -34,7 +40,7 @@ export default class SelectionView extends Component {
             <Categories onClick={this.handleUpdate} listContent={availableCategories} />
           </Col>
           <Col lg={9}>
-            <ThreadContainer category={this.state.category}/>
+            <ThreadContainer category={this.state.category} />
           </Col>
         </Row>
       </Container>
