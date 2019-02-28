@@ -1,4 +1,4 @@
-const palveluurl = '';
+const palveluurl = '/api/';
 
 
 
@@ -13,3 +13,17 @@ export function createuser(user, callback) {
     //         callback();
     //     }));
 }
+
+// export function getDiscussion(callback){
+//     fetch(palveluurl + 'thread/', {accept: 'application/json'})
+//     .then(function(response) {
+//         response.json()
+//         .then(function(json) {
+//             if(response.status >= 400)
+//             callback(json, response.status);
+//             else
+//             callback(json);
+//         });
+//     });
+// }
+
