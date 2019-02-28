@@ -4,7 +4,6 @@ import { getDiscussion } from '../../API/mock_calls';
 export default class DiscussionView extends Component {
   constructor(props) {
     super(props);
-
   }
   render() {
     let res = getDiscussion(this.props.match.params.id);
