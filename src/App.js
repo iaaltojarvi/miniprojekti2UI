@@ -47,7 +47,7 @@ class App extends Component {
             <Route path='/login' render={(props) => <LoginForm {...props} onLogin={this.userLogin} />} />
             <Route path='/signup' component={SignupForm} />
             <Route path='/profile' component={Profile} />
-            <Route path='/discussion/:id' component={DiscussionView} />
+            <Route path='/discussion/:id' render={(props) => <DiscussionView {...props} isAuth={this.state.logged_in} />} />
             <Route path='**' component={PageNotFound} />
           </Switch>
         </div>

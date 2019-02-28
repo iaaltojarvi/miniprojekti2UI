@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import { createuser } from '../../serviceClient';
-
 
 class LoginForm extends Component {
     constructor(props) {

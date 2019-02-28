@@ -2,15 +2,13 @@ import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import { createThread } from '../../API/mock_calls';
-
 
 class AddThreadForm extends Component {
     constructor(props) {
         super(props);
         this.handleClick = this.handleClick.bind(this);
         this.handleChange = this.handleChange.bind(this);
-        this.state = { category: 'javascript', topic: '', author_id: 2 };
+        this.state = { category: 'javascript', topic: '' };
     }
 
     handleChange(event) {
@@ -19,34 +17,39 @@ class AddThreadForm extends Component {
 
     async handleClick(event) {
         event.preventDefault();
+        let token = localStorage.getItem('auth');
         if (!this.state.topic) {
             alert('Must have topic for discussion!');
-        } else {
-            try {
-                var token = localStorage.getItem('auth');
-                var myHeaders = new Headers();
-                if (token) {
-                    myHeaders.append('authorization', token);
-                }
-                myHeaders.append('Content-Type', 'application/json');
-                myHeaders.append('Accept', 'application/json');
-                let res = await fetch('/api/thread', {
-                    method: 'POST',
-                    mode: 'cors',
-                    headers: myHeaders,
-                    body: JSON.stringify(this.state)
-                })                
-                console.log(res);
-                let jsonRes = await res.json();                
-                if(!jsonRes.id) {
-                    throw new Error("Not authorized!")
-                }                
-                let url_id = jsonRes.id;
-                this.props.history.push('/discussion/' + url_id);
-            } catch (error) {
-                alert(error.message);
-            }
+            return;
         }
+        if(!token) {
+            alert('Must be signed in to start new thread!');
+            return;
+        }
+        let author_id = JSON.parse(token).id;
+        let myHeaders = new Headers();
+        if (token) {
+            myHeaders.append('authorization', token);
+        }
+        myHeaders.append('Content-Type', 'application/json');
+        myHeaders.append('Accept', 'application/json');
+        try {
+            let res = await fetch('/api/thread', {
+                method: 'POST',
+                mode: 'cors',
+                headers: myHeaders,
+                body: `{"author_id":"${author_id}", "topic": "${this.state.topic}", "category": "${this.state.category}"}`
+            })
+            let jsonRes = await res.json();
+            if (!jsonRes.id) {
+                throw new Error("Not authorized!")
+            }
+            let url_id = jsonRes.id;
+            this.props.history.push('/discussion/' + url_id);
+        } catch (error) {
+            alert(error.message);
+        }
+
     }
 
     render() {

@@ -1,8 +1,6 @@
 import React from 'react'
 import Container from 'react-bootstrap/Container';
 import Thread from './Thread';
-import { getThreads } from '../../API/mock_calls';
-
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
@@ -32,12 +30,10 @@ const mapCategoryToImg = (category) => {
 }
 
 const ThreadContainer = (props) => {
-  const threadList = getThreads(props.category);
-  const newList = threadList.map(thread => {
+  const newList = props.threadList.map(thread => {
     return (
       <Col lg={4} key={thread.id}>
         <Thread
-          author='Groot!'
           text={thread.topic || 'no content'}
           imageName={mapCategoryToImg(thread.category)}>
         </Thread>

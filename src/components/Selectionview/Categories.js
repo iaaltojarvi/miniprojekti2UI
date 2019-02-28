@@ -13,7 +13,7 @@ export default class Categories extends Component {
 
   handleClick(category) {
     let lCaseCategory = category.toLowerCase();
-    if(lCaseCategory === 'all categories') {
+    if (lCaseCategory === 'all categories') {
       lCaseCategory = '';
     }
     this.props.onClick(lCaseCategory);

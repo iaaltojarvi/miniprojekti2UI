@@ -1,7 +1,3 @@
-const palveluurl = '';
-
-
-
 export function createuser(user, callback) {
     console.log(user);
     // fetch(palveluurl+'users',  {
