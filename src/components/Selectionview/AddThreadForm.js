@@ -10,7 +10,7 @@ class AddThreadForm extends Component {
         super(props);
         this.handleClick = this.handleClick.bind(this);
         this.handleChange = this.handleChange.bind(this);
-        this.state = { category: 'javascript', topic: '' };
+        this.state = { category: 'javascript', topic: '', author_id: 2 };
     }
 
     handleChange(event) {
@@ -22,10 +22,30 @@ class AddThreadForm extends Component {
         if (!this.state.topic) {
             alert('Must have topic for discussion!');
         } else {
-            let res = await createThread(this.state.category, this.state.topic);
-            if(res) this.props.history.push('/discussion/2');
-            // TODO: adds to database, waits for async method to return success and then history push-a-loo!
-            
+            try {
+                var token = localStorage.getItem('auth');
+                var myHeaders = new Headers();
+                if (token) {
+                    myHeaders.append('authorization', token);
+                }
+                myHeaders.append('Content-Type', 'application/json');
+                myHeaders.append('Accept', 'application/json');
+                let res = await fetch('/api/thread', {
+                    method: 'POST',
+                    mode: 'cors',
+                    headers: myHeaders,
+                    body: JSON.stringify(this.state)
+                })                
+                console.log(res);
+                let jsonRes = await res.json();                
+                if(!jsonRes.id) {
+                    throw new Error("Not authorized!")
+                }                
+                let url_id = jsonRes.id;
+                this.props.history.push('/discussion/' + url_id);
+            } catch (error) {
+                alert(error.message);
+            }
         }
     }
 

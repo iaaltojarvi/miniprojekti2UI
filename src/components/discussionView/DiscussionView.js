@@ -4,16 +4,24 @@ import { getDiscussion } from '../../API/mock_calls';
 export default class DiscussionView extends Component {
   constructor(props) {
     super(props);
-
+    this.state = { data: [] };
   }
+
+  async componentDidMount() {
+    let res = await fetch('/api/thread/' + '2');
+    let jsonRes = await res.json();
+    this.setState({ data: jsonRes });
+  }
+
   render() {
-    let res = getDiscussion(this.props.match.params.id);
-    if (!res) {
-      res = [{ content: "Not found!" }];
-    }
+    let dataArray = this.state.data.map(item => {
+      return (
+        <li key={item.id}>{item.content}</li>
+      );
+    })
     return (
       <div>
-        <p>{res[0].content}</p>
+        <ul>{dataArray}</ul>
       </div>
     )
   }
